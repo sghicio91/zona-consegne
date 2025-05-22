@@ -1,21 +1,24 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <title>Verifica Zona Consegna</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <meta charset="UTF-8">
+  <title>Zona di Consegna</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCWncf43gkHprEod5hdnvvoRqrCLI7lEw&libraries=places" defer></script>
+  <script type="module" src="https://unpkg.com/@googlemaps/places-autocomplete-element"></script>
+  <script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
 </head>
-<div id="map"></div>
-
 <body>
-    <h1>Verifica zona di consegna</h1>
-    <input type="text" id="address" placeholder="Inserisci indirizzo">
-    <button onclick="searchAddress()">Cerca</button>
-    <p id="result"></p>
+  <h1>Verifica zona di consegna</h1>
 
-    <script src="app.js"></script>
+  <gmpx-place-autocomplete id="autocomplete" style="width:100%; max-width:400px;" placeholder="Inserisci indirizzo"></gmpx-place-autocomplete>
+  <button onclick="searchAddress()">Cerca</button>
+  <p id="result"></p>
+  <div id="map"></div>
+
+  <script src="app.js"></script>
 </body>
 </html>
