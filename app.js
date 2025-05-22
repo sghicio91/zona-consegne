@@ -8,7 +8,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 let marker = null;
 
-fetch("zone_consegne_ultimissimo.geojson")
+fetch("zone_consegne_finale.geojson")
   .then(res => res.json())
   .then(data => {
     geojsonData = data;
