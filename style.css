@@ -9,15 +9,13 @@ h1 {
   font-size: 24px;
 }
 
-gmpx-place-autocomplete {
-  display: block;
+input {
   width: 100%;
   font-size: 16px;
   padding: 10px;
   margin-top: 10px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  box-sizing: border-box;
 }
 
 button {

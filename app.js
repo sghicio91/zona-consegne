@@ -1,5 +1,6 @@
 
 let geojsonData;
+
 let map = L.map('map').setView([28.4636, -16.2518], 13);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -12,6 +13,7 @@ fetch("zone_consegne_finale.geojson")
   .then(res => res.json())
   .then(data => {
     geojsonData = data;
+
     L.geoJSON(data, {
       style: function (feature) {
         const zona = feature.properties.name.toLowerCase();
@@ -35,17 +37,15 @@ fetch("zone_consegne_finale.geojson")
   });
 
 async function searchAddress() {
-  const autocomplete = document.querySelector("gmpx-place-autocomplete");
-  const place = autocomplete.value;
-
+  const address = document.getElementById("address").value;
   const resultBox = document.getElementById("result");
 
-  if (!place) {
+  if (!address) {
     resultBox.innerText = "Inserisci un indirizzo valido.";
     return;
   }
 
-  const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(place + ', Santa Cruz de Tenerife')}`;
+  const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address + ', Santa Cruz de Tenerife')}`;
   const res = await fetch(url);
   const data = await res.json();
 
@@ -80,10 +80,18 @@ async function searchAddress() {
     "zona 1": "2,50 €",
     "zona 2": "3,50 €",
     "zona 3": "3,50 €",
-    "zona 4": "5,50 €"
-  };
+    "zona 4": "5,50 €",
+    "zona 4 (valleseco)": "5,50 €"
+  }
 
   const prezzo = prezzi[zona.toLowerCase()] || "Prezzo non disponibile";
   resultBox.innerText = `Zona: ${zona}
 Prezzo consegna: ${prezzo}`;
 }
+
+// Permette di premere "invio" per cercare
+document.getElementById("address").addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    searchAddress();
+  }
+});
